@@ -1,0 +1,337 @@
+
+facebook hash key 얻기
+ssl 설치
+http://downloads.sourceforge.net/gnuwin32/openssl-0.9.8h-1-setup.exe 설치
+
+
+facebook hash key 얻기
+     
+public void printHashKey() {
+    try {
+        PackageInfo info = getPackageManager().getPackageInfo("com.example.sample_sns",
+                PackageManager.GET_SIGNATURES);
+        for (Signature signature : info.signatures) {
+            MessageDigest md = MessageDigest.getInstance("SHA");
+            md.update(signature.toByteArray());
+                     
+        // 페북에 적어야할 해쉬키.
+        String hash = Base64.encodeToString(md.digest(), Base64.DEFAULT);
+        Log.d("facebook hash key", hash);
+        }
+    } catch (NameNotFoundException e) {
+    } catch (NoSuchAlgorithmException e) {
+    }
+}
+     
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    // TODO Auto-generated method stub
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.main);
+         
+    printHashKey();
+}
+
+
+keytool 실행
+
+C:\Users\kimjw\.android
+
+keytool -exportcert -alias androiddebugkey -keystore C:\Users\kimjw\.android\debug.keystore | openssl sha1 -binary | openssl base64
+
+DTgL3KkVYicMmkgW3I/zpjI++OQ=
+
+
+HashKey 얻는 메소드
+
+
+// facebook 카테고리
+{
+   "name": "Facebook Platform",
+
+   "type": "page",
+
+   "website": "http://developers.facebook.com",
+
+   "username": "platform",
+
+   "founded": "May 2007",
+
+   "company_overview": "Facebook Platform enables anyone to build...",
+
+   "mission": "To make the web more open and social.",
+
+   "products": "Facebook Application Programming Interface (API)...",
+
+   "likes": 449921,
+
+   "id": 19292868552,
+
+   "category": "Technology"
+
+}
+
+이미지 주소
+
+https://graph.facebook.com/"+userId+"/picture
+
+
+https://graph.facebook.com/100003545682219/picture
+
+https://graph.facebook.com/100006209983298/picture
+
+
+1.public class FacebookPost
+2.{
+3.  public String PostId { get; set; }
+4.  public String Author { get; set; }
+5.  public String Picture { get; set; }
+6.  public String Link { get; set; }
+7.  public String Published { get; set; }
+8.  public String ContentHtml { get; set; }
+9.  private delegate String ExtractDelegate();
+10.  public static IList<FacebookPost> Import(dynamic data)
+11.  {
+12.    var posts = new List<FacebookPost>();
+13.    foreach (var item in data)
+14.    {
+15.      var tempItem = item;
+16.      var fb = new FacebookPost
+17.      {
+18.        PostId = Extract(() => tempItem["id"]),
+19.        Published = Extract(() => tempItem["created_time"]),
+20.        Picture = Extract(() => tempItem["picture"]),
+21.        Link = Extract(() => tempItem["link"]),
+22.        Author = Extract(() => tempItem["from"]["name"])
+23.      };
+24.      try
+25.      {
+26.        fb.ContentHtml = Extract(() => tempItem["message"]);
+27.      }
+28.      catch
+29.      {
+30.      }
+31.      if (!String.IsNullOrEmpty(fb.ContentHtml))
+32.        posts.Add(fb);
+33.      }
+34.      return posts;
+35.    }
+36.  private static String Extract(ExtractDelegate func)
+37.  {
+38.    try {
+39.      return func();
+40.    } catch {
+41.        return null;
+42.      }
+43.  }
+44.}
+
+
+디벨로퍼 예제 사이트 주소
+https://developers.facebook.com/docs/android/getting-started/facebook-sdk-for-android/
+
+페이스북 API를 이용해서 타임라인을 긁어오는 app를 만들고 있습니다.
+
+ 
+
+mAsyncRunner.request("me/home", new StreamRequestListener());
+
+ 
+
+머 이런식의 함수를 이용하며는 친구들이 쓴글이 가져와지고
+
+ 
+
+mAsyncRunner.request("me/feed", new StreamRequestListener());
+
+주소값 달리해보기
+
+
+When retrieving Posts via the /home, /feed, or /posts connection, you can restrict the results to only those with a location attached by adding with=location to the URL parameters:
+
+https://graph.facebook.com/me/home?with=location
+
+
+
+
+페이스북 이미지 업로드 후 공유(게시) 가 안되는 경우..
+
+
+토마
+
+
+
+http://www.androidpub.com/2364636
+
+2012.11.09 16:40:25 
+
+4150
+
+1 / 0 
+
+
+2
+
+앱개발
+
+
+
+ 
+
+
+
+오늘 하루죙일 삽질함.. ㅠㅠ
+
+
+
+
+내용은 이러하네요..
+
+
+
+
+페이스북에 
+
+
+
+
+Bundle params = new Bundle();
+
+
+params.putString("message", Message);
+
+params.putString("name", "...");
+
+mFacebook.request("me/feed", params, "POST");
+
+
+
+
+등록시 게시글이 공유가 되어 다른사용자에게 정상적으로 보입니다. 
+
+
+
+
+그런데... 왜!!? 사진첩에 올린 이미지는 자동으로 공유가 안되던지... 그래서 검색 삽질 무진장했음... 아놕;;ㅋㅋ
+
+
+
+
+방법은..
+
+
+
+
+우선 사진첩에 사진을 업로드 합니다.
+
+
+
+
+
+Bundle params = new Bundle();
+
+
+params.putByteArray("picture", data);
+
+mFacebook.request("me/photos", params, "POST");
+
+
+
+
+그렇게하면 해당 부분에서 
+
+
+
+
+{"id":"368250273264922","post_id":"100002398586680_368246293265320"} 형태의 Json 을 리턴을 받습니다.
+
+
+
+
+즉..
+
+
+String Jstring = mFacebook.request("me/photos", params, "POST");
+
+JSONObject JsonMessage = new JSONObject(Jstring);
+
+id = JsonMessage.getString("id");
+
+
+
+
+자 이러면 사진첩에 등록된 사진의 ID를 리턴을 받았으며 해당 ID를 가지고 게시글을 작성해야합니다.
+
+
+
+
+
+
+Bundle params = new Bundle();
+
+
+params.putString("message", Message);
+
+params.putString("name", "...");
+
+
+
+params.putByteArray("picture", data);
+
+// 추가
+
+params.putString("link","https://www.facebook.com/photo.php?fbid="+id);
+
+// 추가
+
+mFacebook.request("me/feed", params, "POST");
+
+
+
+
+그러면.. 사진과 내용이 공유된 글이 나오죠.. 
+
+이쉬운걸.. 오늘 오전부터 지금까지 삽질하다니...ㅠㅠ
+
+완전 안습이네요..
+
+저처럼 삽질하시는분 안계시길 바랍니다. ㅠㅠ
+
+이미지 업로드 하기
+
+ private void postPhoto() {
+        if (hasPublishPermission()) {
+            Bitmap image = BitmapFactory.decodeResource(this.getResources(), R.drawable.icon);
+            Request request = Request.newUploadPhotoRequest(Session.getActiveSession(), image, new Request.Callback() {
+                @Override
+                public void onCompleted(Response response) {
+                    showPublishResult(getString(R.string.photo_post), response.getGraphObject(), response.getError());
+                }
+            });
+            request.executeAsync();
+        } else {
+            pendingAction = PendingAction.POST_PHOTO;
+        }
+    }
+
+ private void showPublishResult(String message, GraphObject result, FacebookRequestError error) {
+        String title = null;
+        String alertMessage = null;
+        if (error == null) {
+            title = getString(R.string.success);
+            String id = result.cast(GraphObjectWithId.class).getId();
+            alertMessage = getString(R.string.successfully_posted_post, message, id);
+        } else {
+            title = getString(R.string.error);
+            alertMessage = error.getErrorMessage();
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(alertMessage)
+                .setPositiveButton(R.string.ok, null)
+                .show();
+    }
+
+
+

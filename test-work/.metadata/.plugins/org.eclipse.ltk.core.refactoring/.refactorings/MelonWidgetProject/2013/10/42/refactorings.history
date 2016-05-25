@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Change Layout" description="Change Layout" file="/MelonWidgetProject/res/layout/appwidget.xml" flags="6" flatten="true" id="com.android.ide.eclipse.adt.refactoring.convert" proj="/MelonWidgetProject" sel-end="2562" sel-start="1538" stamp="1382083184293" type="android.widget.RelativeLayout"/>
+</session>

@@ -1,0 +1,2 @@
+//	private static final String url = "http://www.winapi.co.kr/data/saemaul1.mp3";
+	private static final String url = "http://dc120.4shared.com/img/411693166/94d3bc30/dlink__2Fdownload_2FEYAUuddV_3Ftsid_3D20101230-082130-931f6c20/preview.mp3";

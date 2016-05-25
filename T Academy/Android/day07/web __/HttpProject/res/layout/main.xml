@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:baselineAligned="false" android:layout_width="match_parent"
+	android:layout_height="match_parent" android:orientation="vertical">
+	<LinearLayout android:id="@+id/linearLayout1"
+		android:layout_height="wrap_content" android:orientation="horizontal"
+		android:layout_width="match_parent" android:background="#ffff00" android:layout_weight="1" android:gravity="center_vertical">
+		<TextView android:textColor="#000000" android:layout_width="wrap_content"
+			android:text="@string/http" android:textSize="16sp" android:id="@+id/tab1" android:layout_weight="0" android:layout_height="match_parent" android:gravity="center"></TextView>
+		<TextView android:textColor="#000000" android:layout_width="wrap_content"
+			android:layout_weight="1" android:textSize="16sp"
+			android:id="@+id/tab2"
+			android:text="GET Test" android:background="#00ffff" android:layout_height="match_parent" android:gravity="center"></TextView>
+		<TextView android:textColor="#000000" android:layout_width="wrap_content"
+			android:layout_weight="1" android:textSize="16sp"
+			android:text="로그인 " android:id="@+id/tab3" android:layout_height="match_parent" android:gravity="center"></TextView>
+		<TextView android:textColor="#000000" android:layout_width="wrap_content"
+			android:layout_weight="1" android:textSize="16sp"
+			android:text="파일전송 " android:background="#00ffff" android:id="@+id/tab4" android:layout_height="match_parent" android:gravity="center"></TextView>
+	</LinearLayout>
+	<FrameLayout android:id="@+id/frameLayout1"
+		android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="4">
+		<LinearLayout android:layout_height="match_parent"
+			android:layout_width="match_parent" android:id="@+id/liner1" android:orientation="vertical" android:visibility="visible">
+			<Button android:layout_width="match_parent" android:id="@+id/btnhttp1" android:text="구글 사이트 접속 " android:layout_height="wrap_content"></Button>
+			<Button android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/btnhttp2" android:text="자체 서버 접속 "></Button>
+		</LinearLayout>
+		<LinearLayout android:layout_width="match_parent" android:orientation="vertical" android:layout_height="match_parent" android:id="@+id/liner2" android:visibility="invisible">
+			<LinearLayout android:layout_width="match_parent" android:id="@+id/linearLayout3" android:layout_height="wrap_content">
+				<TextView android:layout_width="wrap_content" android:text="이 름 " android:id="@+id/textView1" android:layout_height="wrap_content"></TextView>
+				<EditText android:id="@+id/etaname" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="김재웅"></EditText>
+			</LinearLayout>
+			<LinearLayout android:layout_width="match_parent" android:id="@+id/LinearLayout01" android:layout_height="wrap_content">
+				<TextView android:layout_width="wrap_content" android:id="@+id/TextView01" android:layout_height="wrap_content" android:text="주 소 "></TextView>
+				<EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/etaddr" android:text="경기도 성남시 아튼빌 "></EditText>
+			</LinearLayout>
+			<Button android:layout_height="wrap_content" android:id="@+id/btnget" android:text="GET 데이터 전송 " android:layout_width="match_parent"></Button>
+		</LinearLayout>
+		<LinearLayout android:layout_height="match_parent"
+			android:layout_width="match_parent" android:orientation="vertical" android:id="@+id/liner3" android:visibility="invisible">
+			<LinearLayout android:layout_width="match_parent" android:id="@+id/LinearLayout02" android:layout_height="wrap_content" android:orientation="horizontal">
+				<TextView android:layout_width="wrap_content" android:id="@+id/TextView02" android:layout_height="wrap_content" android:text="아 이 디 "></TextView>
+				<EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/etpid" android:text="gsarang10"></EditText>
+			</LinearLayout>
+			<LinearLayout android:layout_width="match_parent" android:id="@+id/LinearLayout03" android:layout_height="wrap_content">
+				<TextView android:layout_width="wrap_content" android:id="@+id/TextView03" android:layout_height="wrap_content" android:text="암      호 "></TextView>
+				<EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/etpwd" android:inputType="textPassword" android:text="1234"></EditText>
+			</LinearLayout>
+			<Button android:layout_width="match_parent" android:layout_height="wrap_content" android:text="로그인 " android:id="@+id/btnlogin"></Button>
+		</LinearLayout>
+		<LinearLayout android:layout_height="match_parent"
+			android:layout_width="match_parent" android:orientation="vertical" android:id="@+id/liner4" android:visibility="invisible">
+			<LinearLayout android:layout_width="match_parent" android:orientation="horizontal" android:id="@+id/LinearLayout05" android:layout_height="wrap_content">
+				<TextView android:layout_width="wrap_content" android:id="@+id/TextView04" android:layout_height="wrap_content" android:text="상 품 명 "></TextView>
+				<EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/etpname" android:text="안드로이드폰 "></EditText>
+			</LinearLayout>
+			<LinearLayout android:layout_width="match_parent" android:id="@+id/LinearLayout04" android:layout_height="wrap_content">
+				<TextView android:layout_width="wrap_content" android:id="@+id/TextView05" android:layout_height="wrap_content" android:text="가      격 "></TextView>
+				<EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/etprice" android:text="100000"></EditText>
+			</LinearLayout>
+			<ImageView android:layout_width="wrap_content" android:src="@drawable/icon" android:layout_height="wrap_content" android:id="@+id/img1" android:layout_gravity="center_horizontal"></ImageView>
+			<Button android:layout_width="match_parent" android:layout_height="wrap_content" android:text="상품등록 " android:id="@+id/btninsert"></Button>
+		</LinearLayout>
+	</FrameLayout>
+	<ScrollView android:id="@+id/scrollView1"
+		android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_weight="6">
+		<LinearLayout android:layout_height="match_parent"
+			android:layout_width="match_parent" android:id="@+id/linearLayout2" android:gravity="top">
+			<EditText android:layout_height="match_parent"
+				android:layout_width="match_parent" android:id="@+id/etout"></EditText>
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>

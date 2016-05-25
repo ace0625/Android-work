@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">OAuthLoginProject</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="logout">로그아웃</string>
+    <string name="login">로그인</string>
+    <string name="str4">OneID 로그인 테스트예제</string>
+
+</resources>

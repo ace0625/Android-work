@@ -1,0 +1,7 @@
+package com.example.countproject;
+
+import android.appwidget.AppWidgetProvider;
+
+public class CountProvider extends AppWidgetProvider {
+
+}

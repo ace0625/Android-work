@@ -1,0 +1,264 @@
+package com.example.sqliteproject;
+
+import android.app.Activity;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.View;
+
+public class MainActivity extends Activity {
+	private static final String TAG = "MainActivity";
+	int[] resId = {R.id.button1, R.id.button2, R.id.button3, R.id.button4, R.id.button5, R.id.button6};
+	SQLiteDatabase db;
+	MyHelper helper = null;
+	
+	View.OnClickListener bHandler = new View.OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			switch(v.getId())
+			{
+			case R.id.button1:
+				doTest();
+				break;
+			case R.id.button2:
+				insertRec("hongji", "ahn", 26, "23145", 3);
+				break;
+			case R.id.button3:
+				selectAll();
+				break;
+			case R.id.button4:
+				selectRec(new String[] {"_id", "fName", "age"} , "hyunji", 20);
+//				selectRec(new String[] {"fName", "age"} , "hyunji", 20);
+//				selectRec("fName", "age", "hyunji", 20);
+				break;
+			case R.id.button5:  //업데이트
+				updateRec("j", "aaa", 34);
+				break;
+			case R.id.button6:
+				deleteRec(3);
+				break;
+			}
+			
+		}
+	};
+	void deleteRec(int wBigo)
+	{
+		openDB();
+		try {
+			int cnt = db.delete("tMember", "bigo = ?", new String[]{wBigo + ""});
+			Log.v(TAG, "삭제된레코드의 갯수: " + cnt);
+		} catch (SQLException e) {
+			Log.v(TAG, "delete error: + e");
+		}
+		closeDB();
+	}
+	void updateRec(String wStr, String newLName, int newAge)
+	{
+		openDB();
+//		String sql = "update tMember set age = 32 where fname like '%k%';";
+		ContentValues values = new ContentValues();
+		values.put("lName", newLName); //앞에 컬럼네임 두번째 바뀔 데이터
+		values.put("age", newAge);
+		String whereClause = "fName like ? ";
+		String[] whereArgs = {"%" + wStr + "%"};
+		try {
+			int cnt = db.update("tMember", values, whereClause, whereArgs);
+			Log.v(TAG, "수정된 레코드의 갯수: " + cnt);
+		} catch (SQLException e) {
+			Log.v(TAG, "update error: " + e);
+		}
+		closeDB();
+	}
+//	void selectRec(String col1, String col2, String wName, int wAge)
+	void selectRec(String[] colNames, String wName, int wAge)
+	{
+		openDB();
+		
+		Cursor c = null;
+		String wStr = "fname = ? and age >= ? ";
+		String[] whereStr = new String[]{wName, wAge + ""};
+//		String[] colNames = {col1, col2};
+		try {
+			c = db.query("tMember", colNames, null, null, null, null, "_id ", "6,3"); //앞에서 6개만큼 skip 갯수만큼 부르기 (p-1)*10, 10 페이지당 10개씩
+//			c = db.query("tMember", colNames, null, null, null, null, "_id ", "3"); //3개만 출력 id순 
+//			c = db.query("tMember", colNames, wStr, null, null, null, "age desc"); //4번째 변수는 ?가있을 경우
+			
+			Log.v(TAG, "레코드 갯수: " +c.getCount());
+			while(c.moveToNext())
+			{
+				Log.v(TAG, c.getString(0) + "   " + c.getString(1) + "   " + c.getString(2));
+//				Log.v(TAG, c.getString(0) + "   " + c.getString(1));
+//				c.getString(0);
+			}
+		} catch (SQLException e) {
+			Log.v(TAG, "select error: " +e);
+		}finally{
+			if(c != null)
+			{
+			c.close();
+			}
+		}
+		closeDB();
+		
+//		openDB();
+//		String sql = "select ";
+//		sql += col1 + ", " + col2 + " from tMember where fName = '";
+//		sql += wName + "' and age >= " +wAge + ";";
+//		Log.v(TAG, "sql : " + sql);
+//		
+//		Cursor c = null;
+//		try {
+//			c = db.rawQuery(sql, null);
+//			Log.v(TAG, "레코드 갯수: " +c.getCount());
+//			while(c.moveToNext())
+//			{
+//				Log.v(TAG, c.getString(0) + "   " +
+//				c.getString(1));
+////				c.getString(0);
+//			}
+//		} catch (SQLException e) {
+//			Log.v(TAG, "select error: " +e);
+//		}finally{
+//			if(c != null)
+//			{
+//			c.close();
+//			}
+//		}
+//		closeDB();
+		
+	}
+	void selectAll()
+	{
+		openDB();
+		
+		//Method 1
+//		String sql = "select fName, lName, age from tMember;";
+//		Cursor c = null;
+//		try {
+//			c = db.rawQuery(sql, null);
+//			Log.v(TAG, "레코드 갯수: " +c.getCount());
+//			while(c.moveToNext())
+//			{
+//				Log.v(TAG, c.getString(c.getColumnIndex("fName")) +
+//				c.getString(1) + c.getInt(2));
+////				c.getString(0);
+//			}
+//		} catch (SQLException e) {
+//			Log.v(TAG, "select error: " +e);
+//		}finally{
+//			if(c != null)
+//			{
+//			c.close();
+//			}
+//		}
+		//Method 2
+		Cursor c = null;
+		String[] columns = {"fName", "lName", "age"}; //* == null
+		try {
+			c = db.query("tMember", columns, null, null, null, null, null);
+			Log.v(TAG, "레코드 갯수: " +c.getCount());
+			while(c.moveToNext())
+			{
+				Log.v(TAG, c.getString(c.getColumnIndex("fName")) +
+				c.getString(1) + c.getInt(2));
+//				c.getString(0);
+			}
+		} catch (SQLException e) {
+			Log.v(TAG, "select error: " +e);
+		}finally{
+			if(c != null)
+			{
+			c.close();
+			}
+		}
+		closeDB();
+	}
+	void insertRec(String fName, String lName, int age, String tel, int bigo)
+	{
+		openDB();
+		
+		//Method 1
+//		String sql = "insert into tMember(fName, lName, age, phoneNumber, bigo) values('";
+//		sql += fName + "', '";
+//		sql += lName + "', ";
+//		sql += age + ", '";
+//		sql += tel + "', ";
+//		sql += bigo + ");";
+//		Log.v(TAG, "sql : " + sql);
+//		try {
+//			db.execSQL(sql);
+//			Log.v(TAG, "insert success");
+//		} catch (SQLException e) {
+//			Log.v(TAG, "insert error : " +e);
+//		}
+		
+		//Method 2
+		ContentValues values = new ContentValues(); 
+		try {
+			values.put("fName", fName);
+			values.put("lName", lName);
+			values.put("age", age);
+			values.put("phoneNumber", tel);
+			values.put("bigo", bigo);
+			long id = db.insert("tMember", null, values);
+			Log.v(TAG, id>0 ? "success" : "fail");
+		} catch (SQLException e) {
+			Log.v(TAG, "insert error: " +e);
+		}
+		closeDB();
+	}
+	void doTest()
+	{
+		openDB();
+		closeDB();
+	}
+	void openDB()
+	{
+//		db = openOrCreateDatabase("sampe.db", wi, null);
+		db = helper.getWritableDatabase();
+		
+	}
+	void closeDB()
+	{
+		if(db != null)
+		{
+			if(db.isOpen())
+			{
+				db.close();
+			}
+		}
+	}
+	@Override
+	protected void onPause() { //접속된것이 있으면 받기위해서
+		closeDB();
+		if(helper != null)
+		{
+			helper.close();
+		}
+		super.onPause();
+	}
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		for(int id:resId)
+		{
+			findViewById(id).setOnClickListener(bHandler);
+		}
+		helper = new MyHelper(this, "sam.db", null, 1);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+}

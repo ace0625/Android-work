@@ -1,0 +1,7 @@
+package com.example.appwidgetproject;
+
+import android.appwidget.AppWidgetProvider;
+
+public class MyAppWidgetProvider extends AppWidgetProvider {
+
+}

@@ -1,0 +1,10 @@
+
+<resources>
+    <color name="Tap_Black">#000000</color>
+    <color name="Tap_White">#FFFFFF</color>
+    <color name="List_Gray">#BDBDBD</color>
+    <color name="Background_Detail">#000000</color>
+    <color name="Background_List">#FFFFFF</color>
+    <color name="Detail_Textcolor">#FFFFFF</color>
+    
+</resources>

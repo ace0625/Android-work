@@ -1,0 +1,21 @@
+-- 네이버 실시간 검색어
+http://openapi.naver.com/search?key=ced66d15b36088c3c147f1c9d0ec3bc0&target=rank&query=nexearch 
+-- 홍길동 영화 검색
+http://openapi.naver.com/search?key=ced66d15b36088c3c147f1c9d0ec3bc0&query=%ED%99%8D%EA%B8%B8%EB%8F%99&display=10&start=1&target=movie
+
+-- 기상청 실시간 날씨
+http://www.kma.go.kr/XML/weather/sfc_web_map.xml		
+
+http://weather.service.msn.com/data.aspx?weadegreetype=C&culture=ko-KR&weasearchstr=seoul
+http://weather.service.msn.com/data.aspx?weadegreetype=C&culture=ko-KR&weasearchstr=Seongnam
+
+이미지 주소
+http://wst.s-msn.com/i/ko/tmw/32_1x.png
+		
+
+<rank value="2">
+
+</rank>
+-- skplanetx 멜론 실시간 openApi
+http://apis.skplanetx.com/melon/charts/realtime?count=10&page=1&version=1&appKey=461cb22d-5082-377b-869d-f6c3d2b0156c&format=xml
+

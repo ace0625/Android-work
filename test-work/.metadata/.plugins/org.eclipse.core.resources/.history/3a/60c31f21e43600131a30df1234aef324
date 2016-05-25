@@ -1,0 +1,50 @@
+package com.example.sktmapproject;
+
+import com.skp.Tmap.TMapView;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+
+public class MainActivity extends Activity {
+	private static final String TAG = "MainActivity";
+	TMapView tmap = null;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) 
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		tmap = (TMapView)findViewById(R.id.tMap);
+		new Thread() //anonymous inner type
+		{
+			public void run()
+			{
+				tmap.setSKPMapApiKey("20e0098a-451b-3a54-af4f-dba319e1d211");
+				tmap.setLanguage(tmap.LANGUAGE_KOREAN);
+				
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						setUpMap();
+					}
+				});
+			}
+		}.start();
+	}
+	
+	void setUpMap()
+	{
+		tmap.setCompassMode(true);
+		tmap.setTrackingMode(true);
+		tmap.setTrafficInfo(true);
+		tmap.setSightVisible(true);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+}

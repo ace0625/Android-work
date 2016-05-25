@@ -1,0 +1,14 @@
+package com.example.countproject;
+
+import android.appwidget.AppWidgetProvider;
+import android.content.Context;
+import android.content.Intent;
+
+public class CountProvider extends AppWidgetProvider {
+
+	@Override
+	public void onReceive(Context context, Intent intent) {
+	    // TODO Auto-generated method stub
+	}
+
+}

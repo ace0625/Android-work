@@ -1,0 +1,7 @@
+package com.example.countproject;
+
+import android.app.Service;
+
+public class CountService extends Service {
+
+}

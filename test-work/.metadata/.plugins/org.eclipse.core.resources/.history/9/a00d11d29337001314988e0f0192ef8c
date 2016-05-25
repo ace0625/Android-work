@@ -1,0 +1,23 @@
+package com.example.alertproject;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.location.LocationManager;
+import android.util.Log;
+
+public class MyReceiver extends BroadcastReceiver {
+	private static final String TAG = "MainActivity";
+	@Override
+	public void onReceive(Context context, Intent intent) {
+		String action = intent.getAction();
+		String data = intent.getStringExtra("data");
+		boolean flag = intent.getBooleanExtra(LocationManager.KEY_PROXIMITY_ENTERING, true);
+		
+		Log.v(TAG, "action : " +action);
+		Log.v(TAG, "data : " +data);
+		Log.v(TAG, "flag : " +(flag? "들어옴":"나감"));
+		
+	}
+
+}

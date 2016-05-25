@@ -1,0 +1,1 @@
+http://openapi.naver.com/search?key=ced66d15b36088c3c147f1c9d0ec3bc0&target=rank&query=nexearch

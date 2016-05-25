@@ -1,0 +1,54 @@
+package com.example.compassproject;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.util.AttributeSet;
+import android.view.View;
+
+public class CompassView extends View {
+	private static final String TAG = "MainActivity";
+	Context context;
+	float azimuth;	float pitch;
+	float roll;	final static int MAX = 30;
+	Paint textPnt = new Paint();
+	Paint p = new Paint();
+	Bitmap compass;
+	int width;	int height;
+	int w10;	int h10;
+	int thick;	int length;
+
+	
+	public CompassView(Context context) {
+		super(context);
+		textPnt.setColor(Color.BLACK);	textPnt.setTextSize(40);
+		textPnt.setAntiAlias(true);	p.setAntiAlias(true);
+		p.setTextSize(60);
+		compass = 
+		    BitmapFactory.decodeResource(getResources(), R.drawable.compass);
+		}
+
+
+	public CompassView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		
+		// TODO Auto-generated constructor stub
+	}
+
+	public CompassView(Context context, AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
+		
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		width = w;	height = h;
+		w10 = width/10;	h10 = height/10;
+		thick = h10;	length = w10 * 8;
+		super.onSizeChanged(w, h, oldw, oldh);
+	}
+	
+
+}

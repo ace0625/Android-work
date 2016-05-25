@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>이메일 제품 문의 - 1단계 : 문의하실 사항을 알려주세요 | SAMSUNG</title>
+<script type="text/javascript" src="http://www.samsung.com/common/js/jQuery.js"></script>
+<script language="JavaScript" type="text/javascript" src="/sec/common/js/s_code_microsite.js "></script>
+<script language="JavaScript" type="text/javascript"><!--
+/* You may give each page an identifying name, server, and channel on
+the next lines. */
+s.pageName="sec:support:service info:contact us:mobile"
+s.hier1="sec>support>service info>contact us>mobile"
+s.channel="sec:support"
+s.prop1="sec"
+s.prop2="sec:support"
+s.prop3="sec:support:service info" 
+s.prop4="sec:support:service info:contact us"
+s.prop5="sec:support:service info:contact us:mobile"
+
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s.t();if(s_code)document.write(s_code)//--></script>
+<script language="JavaScript" type="text/javascript"><!--
+if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+//--></script><noscript><a href="http://www.omniture.com" title="Web Analytics">
+<img src="http://nmetrics.samsung.com/b/ss/sssamsung3sec,sssamsung3mstglobal/1/H.24--NS/0"height="1" width="1" border="0" alt="" /></a></noscript><!--/DO NOT REMOVE/-->
+<!-- End SiteCatalyst code version: H.24. -->
+<script type='text/javascript'>
+setTimeout("location.href='http://www.samsung.com/sec/support/erms1?initTypeCode=19'",100);
+</script>
+</head>
+
+<body>
+</body>
+</html>

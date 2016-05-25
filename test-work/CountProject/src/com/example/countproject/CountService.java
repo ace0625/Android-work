@@ -1,0 +1,45 @@
+package com.example.countproject;
+
+import android.app.Service;
+import android.content.Intent;
+import android.os.IBinder;
+import android.os.SystemClock;
+
+public class CountService extends Service {
+	int cnt = 0;
+	boolean onAir = false;
+	class CountThread extends Thread
+	{
+		public void run()
+		{
+			Intent intent = new Intent("aaa.bbb.text");
+			while(onAir)
+			{
+				cnt++;
+				intent.putExtra("cnt", cnt+"");
+				sendBroadcast(intent);
+				
+				SystemClock.sleep(1000);
+			}
+		}
+	}
+	@Override
+	public IBinder onBind(Intent intent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void onCreate() {
+		onAir = true;
+		new CountThread().start();
+		super.onCreate();
+	}
+
+	@Override
+	public void onDestroy() {
+		onAir = false;
+		super.onDestroy();
+	}
+
+}

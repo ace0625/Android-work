@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, MainActivity!</string>
+    <string name="app_name">네이버 영화 검색</string>
+    <string-array name="genre">
+        <item>모두검색</item>
+        <item>드라마</item>
+        <item>판타지</item>
+        <item>서부</item>
+        <item>공포</item>
+        <item>모험</item>
+        <item>스릴러</item>
+        <item>느와르</item>
+        <item>컬트</item>
+        <item>다큐멘터리</item>
+    </string-array>
+</resources>

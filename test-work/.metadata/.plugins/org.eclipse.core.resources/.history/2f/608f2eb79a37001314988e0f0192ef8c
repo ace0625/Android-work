@@ -1,0 +1,12 @@
+package com.example.appwidgetproject;
+
+import android.appwidget.AppWidgetProvider;
+
+public class MyAppWidgetProvider extends AppWidgetProvider {
+
+	@Override
+	public void onReceive(Context context, Intent intent) {
+	    // TODO Auto-generated method stub
+	}
+
+}

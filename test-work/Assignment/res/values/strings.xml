@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Assignment</string>
+    <string name="action_settings">Settings</string>
+    <string name="Tab_List">LIST</string>
+    <string name="Tab_Detail">DETAIL</string>
+    <string name="List_Name">NAME :</string>
+    <string name="List_Address">ADDRESS :</string>
+    <string name="List_Type">TYPE :</string>
+    <string name="Button">SAVE</string>
+    <string name="Radio_takeout">Take Out</string>
+    <string name="Radio_sitdown">Sit Down</string>
+    <string name="Radio_delivery">Delivery</string> 
+</resources>

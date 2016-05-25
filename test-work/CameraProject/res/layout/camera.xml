@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_height="fill_parent" android:layout_width="fill_parent" android:id="@+id/camera_menu_body">
+
+<FrameLayout
+    android:id="@+id/camera_frame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+<SurfaceView android:layout_height="fill_parent" android:layout_width="fill_parent" android:id="@+id/camera_menu_preview"></SurfaceView>
+
+<LinearLayout
+    android:id="@+id/camera_menu_btn"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:visibility="visible" android:padding="20dp">
+<ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/camera_btn_pic" android:src="@drawable/take_pic_btn" android:padding="0px" android:visibility="visible"></ImageButton>
+
+<ImageButton
+    android:id="@+id/camera_btn_close"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="0px"
+    android:src="@drawable/close_btn01"
+    android:visibility="visible" android:layout_marginLeft="40dp"/>
+
+</LinearLayout>
+</FrameLayout>
+</LinearLayout>

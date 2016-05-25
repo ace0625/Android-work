@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="titleColor1">#ff0000</color>
+    <color name="titleColor2">#00ff00</color>
+    <color name="titleColor3">#0000ff</color>
+    
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">List3Project</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string-array name="myArr">
+        <item >일요일</item>
+        <item >월요일</item>
+        <item >화요일</item>
+        <item >수요일</item>
+        <item >목요일</item>
+        <item >금요일</item>
+        <item >토요일</item>
+    </string-array>
+
+</resources>

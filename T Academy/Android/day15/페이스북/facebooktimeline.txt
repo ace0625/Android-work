@@ -1,0 +1,48 @@
+1.public class FacebookPost
+2.{
+3.  public String PostId { get; set; }
+4.  public String Author { get; set; }
+5.  public String Picture { get; set; }
+6.  public String Link { get; set; }
+7.  public String Published { get; set; }
+8.  public String ContentHtml { get; set; }
+9.  private delegate String ExtractDelegate();
+10.  public static IList<FacebookPost> Import(dynamic data)
+11.  {
+12.    var posts = new List<FacebookPost>();
+13.    foreach (var item in data)
+14.    {
+15.      var tempItem = item;
+16.      var fb = new FacebookPost
+17.      {
+18.        PostId = Extract(() => tempItem["id"]),
+19.        Published = Extract(() => tempItem["created_time"]),
+20.        Picture = Extract(() => tempItem["picture"]),
+21.        Link = Extract(() => tempItem["link"]),
+22.        Author = Extract(() => tempItem["from"]["name"])
+23.      };
+24.      try
+25.      {
+26.        fb.ContentHtml = Extract(() => tempItem["message"]);
+27.      }
+28.      catch
+29.      {
+30.      }
+31.      if (!String.IsNullOrEmpty(fb.ContentHtml))
+32.        posts.Add(fb);
+33.      }
+34.      return posts;
+35.    }
+36.  private static String Extract(ExtractDelegate func)
+37.  {
+38.    try {
+39.      return func();
+40.    } catch {
+41.        return null;
+42.      }
+43.  }
+44.}
+
+
+디벨로퍼 예제 사이트 주소
+https://developers.facebook.com/docs/android/getting-started/facebook-sdk-for-android/

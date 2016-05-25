@@ -1,0 +1,5 @@
+TelephonyManager telManager = (TelephonyManager)context.getSystemService(context.TELEPHONY_SERVICE); 
+String phoneNum = telManager.getLine1Number();
+
+
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />

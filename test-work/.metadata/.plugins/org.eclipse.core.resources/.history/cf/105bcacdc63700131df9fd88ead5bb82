@@ -1,0 +1,7 @@
+package com.example.melonwidgetproject;
+
+import android.appwidget.AppWidgetProvider;
+
+public class MelonProvider extends AppWidgetProvider {
+
+}

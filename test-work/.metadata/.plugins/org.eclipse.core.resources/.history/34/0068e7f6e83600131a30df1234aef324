@@ -1,0 +1,89 @@
+package com.example.sktmapproject;
+
+import java.util.ArrayList;
+
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.PointF;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+
+import com.skp.Tmap.TMapMarkerItem;
+import com.skp.Tmap.TMapPOIItem;
+import com.skp.Tmap.TMapPoint;
+import com.skp.Tmap.TMapView;
+
+public class MainActivity extends Activity {
+	private static final String TAG = "MainActivity";
+	TMapView tmap = null;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) 
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		tmap = (TMapView)findViewById(R.id.tMap);
+		new Thread() //anonymous inner type
+		{
+			public void run()
+			{
+				tmap.setSKPMapApiKey("20e0098a-451b-3a54-af4f-dba319e1d211");
+				tmap.setLanguage(tmap.LANGUAGE_KOREAN);
+				
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						setUpMap();
+					}
+				});
+			}
+		}.start();
+	}
+	TMapPoint point = null;
+	void setUpMap()
+	{
+		tmap.setCompassMode(true);
+		tmap.setTrackingMode(true);
+		tmap.setTrafficInfo(true);
+		tmap.setSightVisible(true);
+//		tmap.setOnClickListenerCallBack(click);
+		point = new TMapPoint(37.4553343, 126.9602441);
+		setTmapLocation(point);
+	}
+	TMapView.OnClickListenerCallback clickCallBack = new TMapView.OnClickListenerCallback() {
+		
+		@Override
+		public boolean onPressUpEvent(ArrayList<TMapMarkerItem> arg0,
+				ArrayList<TMapPOIItem> arg1, TMapPoint arg2, PointF arg3) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+		
+		@Override
+		public boolean onPressEvent(ArrayList<TMapMarkerItem> markers,
+				ArrayList<TMapPOIItem> pois, TMapPoint tpoint, PointF pointf) {
+				Log.v(TAG, "위도 : " +tpoint.getLatitude() + "경도 : " +tpoint.getLongitude());
+				Log.v(TAG, "좌표 x : " +pointf.x + "좌표 y : " +pointf.y);
+				
+			return true;
+		}
+	};
+	void setTmapLocation(TMapPoint point)
+	{
+		tmap.setLocationPoint(point.getLongitude(), point.getLatitude());
+		tmap.setCenterPoint(point.getLongitude(), point.getLatitude());
+		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.i_location);
+		tmap.setIcon(bitmap);
+		tmap.setIconVisibility(true);
+		
+	}	
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+}

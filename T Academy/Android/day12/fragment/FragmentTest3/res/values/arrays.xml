@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="frageTitle">
+        <item >Image01</item>
+        <item >Image02</item>
+        <item >Image03</item>
+    </string-array>
+    
+</resources>

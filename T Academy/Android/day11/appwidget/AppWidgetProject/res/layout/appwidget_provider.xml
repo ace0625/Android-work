@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_height="72dp" android:layout_width="316dp" 
+  android:background="@drawable/sam41" android:orientation="horizontal">
+	<ImageView android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:id="@+id/appimgview" 
+		android:src="@drawable/icon" 
+		android:layout_gravity="center_vertical" android:layout_marginLeft="20dp">
+	</ImageView>
+	<TextView android:id="@+id/apptxt" 
+		android:text="kimjw test smaple" 
+		android:textColor="#000000" 
+		android:layout_gravity="center_vertical" android:textSize="15dp" android:layout_height="50dp" android:gravity="center_vertical" android:layout_width="160dp">
+	</TextView>
+	<Button android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:id="@+id/appbtn" 
+		android:layout_gravity="center_vertical" android:text="설정 ">
+	</Button>
+</LinearLayout>

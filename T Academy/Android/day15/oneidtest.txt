@@ -1,0 +1,49 @@
+1. 사용자 OAuth 인증을 위한 접근 Endpoint(=URL)
+
+
+https://oneid.skplanetx.com/oauth/authorize?client_id=2224f9c8-b483-333d-8d06-d434b8542267&response_type=code&scope=user,cyworld,tcloud&redirect_uri=http://www.tstore.co.kr
+
+
+2. Access token 발급 요청을 위한 접근 Endpoint(=URL)
+ 
+https://oneid.skplanetx.com/oauth/token?client_id=2224f9c8-b483-333d-8d06-d434b8542267&client_secret=2d053d49-2f12-34a0-9f99-82d36ba834f6&code=Xh3K3D&scope=user,cyworld,tcloud&redirect_uri=http://www.tstore.co.kr&grant_type=authorization_code
+
+반환값
+{"access_token":"0a3323b8-d1ef-4604-b54d-a305bcd4614a","token_type":"bearer","refresh_token":"c93a45e3-a72f-458c-974e-44bf08a6bf42","expires_in":43199,"scope":"tcloud,user,cyworld"}
+
+
+3. ID connect API 호출
+
+https://apis.skplanetx.com/users/me/profile?version=1&appKey=2af0c219-62ea-39c6-aba9-b2c629ac4fd8&access_token=0a3323b8-d1ef-4604-b54d-a305bcd4614a&format=json
+
+반환값
+{"profile":{"serviceNo":"416e103121089cf49b65379b433a5facd6e7f98d9d33d27dde0c9c28b18d8851","userId":"gsarang100","userName":"김재웅","email":"gsarang10@gmail.com"}}
+
+
+4. Access token 재발급을 위한 접근 Endpoint(=URL) 
+
+https://oneid.skplanetx.com/oauth/token?client_id=2224f9c8-b483-333d-8d06-d434b8542267&client_secret=2d053d49-2f12-34a0-9f99-82d36ba834f6&refresh_token=c93a45e3-a72f-458c-974e-44bf08a6bf42&scope=tcloud,user,cyworld&redirect_uri=http://www.tstore.co.kr&grant_type=refresh_token
+
+반환값
+{"access_token":"502326ea-1eef-49b8-b816-a3084da791bd","token_type":"bearer","refresh_token":"c93a45e3-a72f-458c-974e-44bf08a6bf42","expires_in":43199,"scope":"tcloud,cyworld,user"}
+
+
+5. ID connect API 재호출
+
+https://apis.skplanetx.com/users/me/profile?version=1&appKey=2af0c219-62ea-39c6-aba9-b2c629ac4fd8&access_token=502326ea-1eef-49b8-b816-a3084da791bd&format=json
+
+반환값
+{"profile":{"serviceNo":"416e103121089cf49b65379b433a5facd6e7f98d9d33d27dde0c9c28b18d8851","userId":"gsarang100","userName":"김재웅","email":"gsarang10@gmail.com"}}
+
+6. Access token 만료 처리를 위한 접근 Endpoint(=URL)
+https://oneid.skplanetx.com/oauth/expireToken?client_id=2224f9c8-b483-333d-8d06-d434b8542267&token=502326ea-1eef-49b8-b816-a3084da791bd
+
+반환값
+{"app":{"result":"success"}}
+
+7. ID connect API 재호출
+
+https://apis.skplanetx.com/users/me/profile?version=1&appKey=2af0c219-62ea-39c6-aba9-b2c629ac4fd8&access_token=502326ea-1eef-49b8-b816-a3084da791bd&format=json
+
+반환값
+{"error":{"category":"authentication","code":"3102","id":"401","link":{},"message":"이미 만료된 토큰 입니다."}}

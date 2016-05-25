@@ -1,0 +1,41 @@
+package com.example.countproject;
+
+import android.appwidget.AppWidgetManager;
+import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
+import android.content.Context;
+import android.util.Log;
+import android.widget.RemoteViews;
+
+public class CountProvider extends AppWidgetProvider {
+	private static final String TAG = "MainActivity";
+	
+	@Override
+	public void onDeleted(Context context, int[] appWidgetIds) {
+		super.onDeleted(context, appWidgetIds);
+	}
+
+	@Override
+	public void onDisabled(Context context) {
+		super.onDisabled(context);
+	}
+
+	@Override
+	public void onEnabled(Context context) {
+		super.onEnabled(context);
+	}
+
+	int cnt = 0;
+	@Override
+	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
+			int[] appWidgetIds) {
+		cnt++;
+		Log.v(TAG,"onUpdate cnt : " +cnt);
+		RemoteViews views  = new RemoteViews(context.getPackageName(), R.layout.appwidget);
+		views.setTextViewText(R.id.textView1, "Tacademy");
+		
+		ComponentName cName = new ComponentName(context, CountProvider.class);
+		appWidgetManager.updateAppWidget(cName, views);
+		super.onUpdate(context, appWidgetManager, appWidgetIds);
+	}
+}

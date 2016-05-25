@@ -1,0 +1,24 @@
+package com.example.countproject;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+
+public class MyReceiver extends BroadcastReceiver {
+
+	@Override
+	public void onReceive(Context context, Intent intent) {
+		String action = intent.getAction();
+		if("aaa.bbb.START".equals(action))
+		{
+			Intent service = new Intent(context, CountService.class);
+			context.startService(service);
+		}
+		else if("aaa.bbb.STOP".equals(action))
+		{
+			Intent service = new Intent(context, CountService.class);
+			context.stopService(service);
+		}
+	}
+
+}

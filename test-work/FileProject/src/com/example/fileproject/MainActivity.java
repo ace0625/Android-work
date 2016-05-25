@@ -1,0 +1,235 @@
+package com.example.fileproject;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
+import android.view.Menu;
+import android.view.View;
+
+public class MainActivity extends Activity {
+	private static final String TAG = "MainActivity";
+	int[] resId = {R.id.button1, R.id.button2, R.id.button3, R.id.button4, R.id.button5, R.id.button6, R.id.button7, R.id.button8};
+	View.OnClickListener bHandler = new View.OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			switch(v.getId())
+			{
+			case R.id.button1:
+				doRawReadFile();
+				break;
+			case R.id.button2:
+				doWriteFile("aaa.txt", "안드로이드 text tacademy 1234");
+				doWriteFile("bbb.txt", "안드로이드 text tacademy 1234");
+				doWriteFile("ccc.txt", "안드로이드 text tacademy 1234");
+				doWriteFile("ddd.txt", "안드로이드 text tacademy 1234");
+				doWriteFile("eee.txt", "안드로이드 text tacademy 1234");
+				break;
+			case R.id.button3:
+				doReadFile("aaa.txt");
+				break;
+			case R.id.button4:
+				doFileList();
+				break;
+			case R.id.button5:
+				doDeleteFile("ccc.txt");
+				break;
+			case R.id.button6:
+				doSDCardWriteFile("aaa", "bbb.txt", "write data");
+				doSDCardWriteFile("aaa", "ccc.txt", "write data");
+				doSDCardWriteFile("aaa", "ddd.txt", "write data");
+				break;
+			case R.id.button7:
+				doSDCardDeleteFile("aaa", "ccc.txt");
+				break;
+			case R.id.button8:
+				doSDCardRenameFile("aaa", "ddd.txt", "ttt.txt");
+				break;
+			}
+			
+		}
+	};
+	void doSDCardDeleteFile(String dir, String fName)
+	{
+		File sdDir = Environment.getExternalStorageDirectory();
+		File f1= new File(sdDir, dir);
+		File f2 = new File(f1, fName);
+		if(f2.exists())
+		{
+			boolean flag = f2.delete();
+			Log.v(TAG, flag ? "파일 삭제 성공" : "파일 삭제 실패");
+		}
+		else
+		{
+			Log.v(TAG, "파일 존재하지 않음");
+		}
+	}
+	void doSDCardRenameFile(String dir, String oName, String nName)
+	{
+		File sdDir = Environment.getExternalStorageDirectory();
+		
+		File f1= new File(sdDir, dir);
+		
+//		File[] fList = f1.listFiles();
+		File f2 = new File(f1, oName);
+		File f3 = new File(f1, nName);
+		
+		if(f2.exists())
+		{
+			boolean flag = f2.renameTo(f3);
+			Log.v(TAG, flag ? "파일 Rename 성공" : "파일 Rename 실패");
+		}
+	}
+	void doSDCardWriteFile(String dir, String fName, String data)
+	{
+		String state = Environment.getExternalStorageState();
+		if(Environment.MEDIA_UNMOUNTED.equals(state))
+		{
+			Log.v(TAG, "SDCard 없음");
+			return;
+		}
+		
+		File sdDir = Environment.getExternalStorageDirectory(); //상태 얻어오기 from sdcard
+		Log.v(TAG, "SDCARD root: " +sdDir);
+		
+		File f1 = new File(sdDir, dir);
+		if(!f1.exists())
+		{
+			f1.mkdir();
+		}
+		File f2 = new File(f1, fName);
+		
+		PrintWriter pw = null;
+		try {
+			pw = new PrintWriter(new FileOutputStream(f2));
+			pw.println(data);
+			Log.v(TAG, "SD파일 저장 성공");
+		} catch (Exception e) {
+			// 
+		} finally{
+			if(pw != null)
+				pw.close();
+			
+		}
+		
+	}
+	void doDeleteFile(String fName)
+	{
+		boolean flag = deleteFile(fName);
+		Log.v(TAG, flag ? "파일삭제성공" : "파일삭제실패");
+	}
+	void doFileList()
+	{
+		String[] fList = fileList();
+		Log.v(TAG, "***** Flile list ****");
+		for(String fName : fList)
+		{
+			Log.v(TAG, fName);
+		}
+		Log.v(TAG, "***** Flile list ****");
+	}
+	void doReadFile(String fName)
+	{
+		BufferedReader br = null;
+		String data = "";
+		try {
+			br = new BufferedReader(new InputStreamReader(
+					openFileInput(fName)));
+			while((data = br.readLine()) != null)
+			{
+				Log.v(TAG, data);
+			}
+		} catch (IOException e) {
+			Log.v(TAG, "RAW error : " +e);
+		} finally{
+			if(br != null)
+			{
+				try {
+					br.close();
+				} catch (IOException e) {
+				}
+			}
+		}
+	}
+	void doWriteFile(String fName, String data)
+	{
+		PrintWriter pw = null;
+		try {
+			pw = new PrintWriter(openFileOutput(fName, 0));
+			pw.println(data);
+			Log.v(TAG, "파일 저장 성공");
+		} catch (Exception e) {
+			// 
+		} finally{
+			if(pw != null)
+				pw.close();
+			
+		}
+	}
+	void doRawReadFile()
+	{
+//		InputStream is;
+//		InputStreamReader isr; //한자씩 읽어오기
+		BufferedReader br = null;
+		String data = "";
+		try {
+			br = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.test)));
+			while((data = br.readLine()) != null)
+			{
+				Log.v(TAG, data);
+			}
+		} catch (IOException e) {
+			Log.v(TAG, "RAW error : " +e);
+		} finally{
+			if(br != null)
+			{
+				try {
+					br.close();
+				} catch (IOException e) {
+				}
+			}
+		}
+		
+	}
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		init();
+		setUI();
+		setonListener();
+		for(int i : resId)
+		{
+			findViewById(i).setOnClickListener(bHandler);
+			
+		}
+	}
+	void init()
+	{
+		
+	}
+	void setUI()
+	{
+		
+	}
+	void setonListener()
+	{
+		
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+}

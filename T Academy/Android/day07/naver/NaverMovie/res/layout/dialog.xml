@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent" android:layout_height="match_parent"
+	android:orientation="vertical" android:layout_gravity="top">
+	<RelativeLayout android:layout_height="wrap_content"
+		android:layout_width="match_parent" android:id="@+id/relativeLayout1">
+		<ImageView android:layout_height="wrap_content" android:id="@+id/diaimg"
+			android:src="@drawable/noimage" android:layout_width="wrap_content"
+			android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+		<TextView android:layout_width="wrap_content"
+			android:textSize="18dp" android:textColor="#00ffff" android:id="@+id/TextView01"
+			android:layout_height="wrap_content" android:text="감독 : 김재웅 "
+			android:layout_above="@+id/diaimg" android:layout_toLeftOf="@+id/diaimg" />
+		<TextView android:layout_toRightOf="@+id/diaimg"
+			android:layout_height="wrap_content" android:layout_alignParentTop="true"
+			android:text="영화제목 타이틀 " android:textColor="#ffff00"
+			android:textSize="18dp" android:id="@+id/diatitle1"
+			android:layout_marginLeft="5dp" android:layout_width="match_parent" />
+		<TextView android:layout_height="wrap_content"
+			android:layout_below="@+id/diatitle1" android:layout_toRightOf="@+id/diaimg"
+			android:textColor="#00ffff" android:textSize="18dp" android:id="@+id/diaderector"
+			android:text="감독 : 김재웅 " android:layout_width="match_parent"
+			android:layout_marginLeft="5dp" />
+		<TextView android:layout_height="wrap_content"
+			android:layout_below="@+id/diaderector" android:layout_toRightOf="@+id/diaimg"
+			android:textColor="#00ffff" android:textSize="18dp" android:id="@+id/diayear"
+			android:text="제작년도 : 2010 " android:layout_width="match_parent"
+			android:layout_marginLeft="5dp" />
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_below="@+id/diayear"
+			android:layout_toRightOf="@+id/diaimg" android:textColor="#ff00ff"
+			android:textSize="18dp" android:id="@+id/diatextgrade" android:text="평점 : 9.08 "
+			android:layout_alignLeft="@+id/diaderector" />
+		<RatingBar android:layout_width="wrap_content" android:id="@+id/ratingBar1"
+			android:layout_height="wrap_content" android:layout_toRightOf="@+id/diaimg"
+			android:numStars="5" android:layout_below="@+id/diatextgrade"
+			android:max="10" android:rating="4" android:stepSize="0.1"
+			android:layout_alignLeft="@+id/diaderector" style="?android:attr/ratingBarStyleIndicator" />
+	</RelativeLayout>
+	<TextView android:layout_height="wrap_content" android:id="@+id/diaactor"
+		android:textSize="20dp" android:text="배우 \n 홍길동 "
+		android:layout_width="match_parent" />
+	<TextView android:layout_height="wrap_content" android:text="상세 정보 주소 페이지 "
+		android:textSize="20dp" android:textColor="#0000ff" android:id="@+id/diaurl"
+		android:layout_width="match_parent" />
+	<Button android:layout_height="wrap_content" android:text="닫기 "
+		android:id="@+id/diaclose" android:layout_width="match_parent" />
+</LinearLayout>

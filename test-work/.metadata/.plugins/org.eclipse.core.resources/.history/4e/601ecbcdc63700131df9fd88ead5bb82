@@ -1,0 +1,12 @@
+package com.example.melonwidgetproject;
+
+import android.appwidget.AppWidgetProvider;
+
+public class MelonProvider extends AppWidgetProvider {
+
+	@Override
+	public void onReceive(Context context, Intent intent) {
+	    // TODO Auto-generated method stub
+	}
+
+}

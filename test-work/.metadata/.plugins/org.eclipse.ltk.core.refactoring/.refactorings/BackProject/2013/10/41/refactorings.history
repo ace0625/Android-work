@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;BackProject/res/drawable-hdpi/btn_default.xml&apos; to &apos;login.xml&apos;" description="Rename resource &apos;btn_default.xml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="res/drawable-hdpi/btn_default.xml" name="login.xml" stamp="1381118448294" updateReferences="true"/>
+</session>

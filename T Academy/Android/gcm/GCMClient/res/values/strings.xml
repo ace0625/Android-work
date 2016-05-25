@@ -1,0 +1,21 @@
+<resources>
+
+    <string name="app_name">GCMClient</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_main">GCMClient</string>
+    <string name="str1">RegId 등록</string>
+    <string name="str2">RegId 해제</string>
+    <string name="gcm_registered">SCM 서버에 등록 성공</string>
+    <string name="gcm_unregistered">SCM 서버에서 해제 성공</string>
+    <string name="gcm_message">서드파트서버에서 메세지 수신됨</string>
+    <string name="gcm_deleted">gcm 삭제됨 </string>
+    <string name="gcm_error">gcm 에러 확인됨</string>
+    <string name="gcm_recoverable_error">gcm gcm_recoverable_error </string>
+    <string name="server_registering">서드파트 등록 메세지</string>
+    <string name="server_registered">server_registered</string>
+    <string name="server_register_error">server_register_error </string>
+    <string name="server_unregistered">server_unregistered </string>
+    <string name="server_unregister_error">server_unregister_error </string>
+    <string name="already_registered">이미 등록된 RegId 입니다 </string>
+
+</resources>

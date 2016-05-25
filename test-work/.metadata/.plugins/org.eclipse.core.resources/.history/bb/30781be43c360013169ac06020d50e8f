@@ -1,0 +1,50 @@
+package com.example.compassproject;
+
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.view.Menu;
+
+public class MainActivity extends Activity {
+	SensorManager manager = null;
+	CompassView mView;
+	
+	@SuppressLint("ServiceCast")
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		
+		manager = (SensorManager)getSystemService(SEARCH_SERVICE);
+	}
+
+	
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		manager.unregisterListener(mView.listener);
+	}
+
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		manager.registerListener((SensorEventListener) mView, manager.getDefaultSensor(Sensor.TYPE_ORIENTATION), 
+				SensorManager.SENSOR_DELAY_UI);
+
+	}
+
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+}
